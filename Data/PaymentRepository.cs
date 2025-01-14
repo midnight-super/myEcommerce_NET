@@ -17,7 +17,7 @@ public class PaymentRepository
     var orderValidationQuery = "SELECT TotalAmount FROM Orders WHERE OrderId = @OrderId AND Status = 'Pending'";
     var insertPaymentQuery = "INSERT INTO Payments (OrderId, Amount, Status, PaymentType, PaymentDate) OUTPUT INSERTED.PaymentId VALUES (@OrderId, @Amount, 'Pending', @PaymentType, @PaymentDate)";
     var updatePaymentStatusQuery = "UPDATE Payments SET Status = @Status WHERE PaymentId = @PaymentId";
-    PaymentResponseDTO paymentResponseDTO = new PaymentResponseDTO();
+    PaymentResponseDTO paymentResponseDTO = new();
     using var connection = _connectionFactory.CreateConnection();
     await connection.OpenAsync();
     using var transaction = connection.BeginTransaction();
@@ -94,7 +94,7 @@ public class PaymentRepository
     // Queries to fetch related order and current payment details
     var paymentDetailsQuery = "SELECT p.OrderId, p.Amount, p.Status, o.Status AS OrderStatus FROM Payments p INNER JOIN Orders o ON p.OrderId = o.OrderId WHERE p.PaymentId = @PaymentId";
     var updatePaymentStatusQuery = "UPDATE Payments SET Status = @Status WHERE PaymentId = @PaymentId";
-    UpdatePaymentResponseDTO updatePaymentResponseDTO = new UpdatePaymentResponseDTO()
+    UpdatePaymentResponseDTO updatePaymentResponseDTO = new()
     {
       PaymentId = paymentId
     };
