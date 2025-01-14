@@ -6,6 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddTransient<SqlConnectionFactory>();
+
+builder.Services.AddScoped<CustomerRepository>();
+builder.Services.AddScoped<ProductRepository>();
+builder.Services.AddScoped<OrderRepository>();
+builder.Services.AddScoped<PaymentRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
