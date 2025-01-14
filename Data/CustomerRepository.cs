@@ -1,4 +1,3 @@
-using System;
 using ECommerceAPI.DTO;
 using ECommerceAPI.Models;
 using Microsoft.Data.SqlClient;
@@ -32,7 +31,7 @@ public class CustomerRepository(SqlConnectionFactory connectionFactory)
   }
   public async Task<Customer> GetCustomerByIdAsync(int customerId)
   {
-    var query = "SELECT CustomerId, Name, Email, Address FROM Customers WHERE CustomerId=@CustomerId AND Is Deleted = 0";
+    var query = "SELECT CustomerId, Name, Email, Address FROM Customers WHERE CustomerId=@CustomerId AND IsDeleted = 0";
     Customer? customer = null;
     using var connection = _connectionFactory.CreateConnection();
     await connection.OpenAsync();

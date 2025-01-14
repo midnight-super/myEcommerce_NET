@@ -1,5 +1,3 @@
-using System;
-
 namespace ECommerceAPI.DTO;
 
 public class CustomerResponseDTO
